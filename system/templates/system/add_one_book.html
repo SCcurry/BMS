@@ -1,0 +1,117 @@
+{% extends "system/books_admin_base.html" %}
+{% load static %}
+{% load bootstrap3 %}
+
+
+
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/static/ico/book-admin.png">
+
+    <title>Starter Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/static/css/start-template/start-template.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    {% block starter-template %}
+    <!-- 删掉base模板所带的标题 -->
+    {% endblock %}
+
+    {% block row %}
+
+            <div class="col-md-12">
+                <h4 class="mb-3"><strong>新增一本图书</strong></h4>
+                <form method="post" class="needs-validation" novalidate="">
+                    {% csrf_token %}
+                <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <label for="book_name">书名</label>
+                        <input type="text" class="form-control" name="book_name" id="book_name" placeholder="请输入图书的名称" value="" required="">
+                    </div>
+                    <!-- 验证输入框有无值 -->
+                    <div class="invalid-feedback">
+                        请输入图书名称
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="book_author">作者</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="book_author" id="book_author" placeholder="请输入图书作者的名字" value="" required="">
+                        <div class="invalid-feedback" style="width: 100%;">
+                            请输入图书作者的名字
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="book_publish">出版社<span class="text-muted"></span></label>
+                    <input type="text" class="form-control" name="book_publish" id="book_publish" placeholder="请输入图书的出版社" value="" required="">
+                    <div class="invalid-feedback">
+                        请输入图书的出版社
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="book_language">语言 <span class="text-muted"> <small>例如：中文</small> </span></label>
+                    <input type="text" class="form-control" name="book_language" id="book_language" placeholder="请输入图书的语言" value="" required="">
+                    <div class="invalid-feedback">
+                        请输入图书的语言
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="book_price">价格<span class="text-muted"> <small>XX.XX元</small> </span></label>
+                    <input type="text" class="form-control" name="book_price" id="book_price" placeholder="请输入图书的价格" value="" required="">
+                    <div class="invalid-feedback">
+                        请输入图书的价格
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="book_publish_date">出版日期<span class="text-muted"><small>    请输入格式如: 2018/01/01 </small></span></label>
+                    <input type="text" class="form-control" name="book_publish_date" id="book_publish_date" placeholder="" value="" required="">
+                    <div class="invalid-feedback">
+                        请输入图书的出版日期
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="book_ISBN">ISBN<span class="text-muted"></span></label>
+                    <input type="text" class="form-control" name="book_ISBN" id="book_ISBN" placeholder="请输入图书的ISBN码" value="" required="">
+                    <div class="invalid-feedback">
+                        请输入图书的ISBN码
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="book_introduction">简介<span class="text-muted"></span></label>
+                    <textarea class="form-control" name="book_introduction" id="" cols="30" rows="6" placeholder="请输入图书的简介">  </textarea>
+                    <div class="invalid-feedback">
+                        请输入图书的简介
+                    </div>
+                </div>
+
+                <hr class="mb-4">
+                <button class="btn btn-primary btn-lg btn-block" type="submit">Confirm</button>
+                    <br>
+                </form>
+            </div>
+
+    {% endblock %}
+
+
+  </body>
+</html>

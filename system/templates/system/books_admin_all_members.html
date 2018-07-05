@@ -1,0 +1,45 @@
+{% extends "system/system_admin_base.html" %}
+{% load static %}
+{% load bootstrap3 %}
+
+
+{% block starter-template %}
+
+{% endblock %}
+
+{% block card %}
+    {% if All_books_admind %}
+
+        <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+            <h1 class="display-4">图书管理员信息</h1>
+            <p class="lead">  <small>所有图书管理员的信息以卡片的形式呈现在下面</small></p>
+        </div>
+
+        <div class="row">
+            {% for one_books_admin in All_books_admind %}
+            <div class="col-md-4">
+                <div class="card-deck mb-3 text-center">
+                    <div class="card mb-4 box-shadow">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">ID：{{ one_books_admin.BookSys_Id }}</h4>
+                </div>
+                <div class="card-body">
+                    <h1 class="card-title pricing-card-title"><small class="text-muted">{{ one_books_admin.BookSys_User }}</small></h1>
+
+                    <ul class="list-unstyled mt-3 mb-4">
+                        <li><strong>密码：</strong>{{ one_books_admin.BookSys_Password }}</li>
+                        <li><strong>姓名：</strong>{{ one_books_admin.BookSys_Name }}</li>
+                        <li><strong>联系方式：</strong>{{ one_books_admin.BookSys_Phone }}</li>
+
+                    </ul>
+                </div>
+            </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+    {% endif %}
+
+
+{% endblock %}

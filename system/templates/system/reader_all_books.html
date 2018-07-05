@@ -1,0 +1,54 @@
+{% extends "system/reader_base.html" %}
+{% load static %}
+{% load bootstrap3 %}
+
+
+
+    {% block main_text %}
+    <h1>这里有全部图书的信息~</h1>
+    <p class="lead">你可以在这里对图书进行借阅</p>
+    {% endblock %}
+
+    {% block row %}
+        <div class="row">
+            {% for obj in obj_list %}
+
+            <div class="col-md-4">
+                <div class="card mb-4 box-shadow">
+                    <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;" src="/static/img/front_cover3.png" data-holder-rendered="true">
+                    <div class="card-body">
+                        <div class="text-center">
+                        <h5><strong>{{ obj.book_name }}</strong></h5>
+                        <!-- 使用过滤器对模板变量进行切片操作 -->
+                        <p>{{ obj.book_introduction | slice:":55" | add:"......" }}</p>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-sm btn-outline-secondary"><a style="color:black;" href="{% url 'reader_book_detail' obj.book_name %}" >View</a></button>
+
+                                {% if obj.book_status == 0 %}
+                                    <button type="button" class="btn btn-sm btn-outline-secondary"><a style="color:black;" href="{% url 'reader_confirm_borrow' obj.book_name %}" >Borrow</a></button>
+                                {% endif %}
+
+                                {% if obj.book_status == 1 %}
+                                    <button type="button" class="btn btn-sm disabled">Borrowed</button>
+                                {% endif %}
+
+
+
+                            </div>
+                            <a href="{% url 'reader_book_detail' obj.book_name  %}"><small class="text-muted"> >> More </small></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+
+            <hr class="mb-4">
+        </div>
+    {% endblock %}
+
+    {% block len_information %}
+        <a class="dropdown-item" href="{% url 'reader_self_lend_stream' reader_user %}">查看自己的借阅信息</a>
+    {% endblock %}

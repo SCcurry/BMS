@@ -1,0 +1,36 @@
+{% extends "system/reader_base.html" %}
+{% load static %}
+{% load bootstrap3 %}
+
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/static/ico/book-admin.png">
+
+
+    <!-- Bootstrap core CSS -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/static/css/start-template/start-template.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    {% block title %}
+    <title>
+      你好，读者
+    </title>
+    {% endblock %}
+
+    {% block len_information %}
+        <a class="dropdown-item" href="{% url 'reader_self_lend_stream' reader_user %}">查看自己的借阅信息</a>
+    {% endblock %}
+
+  </body>
+</html>

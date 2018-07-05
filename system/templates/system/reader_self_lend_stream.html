@@ -1,0 +1,63 @@
+{% extends "system/reader_base.html" %}
+{% load static %}
+{% load bootstrap3 %}
+
+{% block starter-template %}
+    <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+        <h1 class="display-4">您的所有借阅信息</h1>
+        <p class="lead">  <small>所有借阅信息以表格的形式显示在下面</small></p>
+        <p class="lead"> <small>您还可以借阅 {{ reader_canborrow }} 本书 </small></p>
+    </div>
+{% endblock %}
+
+{% block main %}
+  <div class="container">
+
+    <table class="table table-hover">
+      <small>借阅信息 </small>
+      <thead>
+        <tr>
+            <th>ID</th>
+          <th>读者账号</th>
+          <th>书名</th>
+          <th>类型</th>
+            <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {% if lend_stream %}
+          {% for one_lend_stream in lend_stream %}
+            <tr>
+              <td>{{ one_lend_stream.lend_stream_id }}</td>
+              <td>{{ one_lend_stream.lend_stream_reader_name }}</td>
+              <td>{{ one_lend_stream.lend_stream_book_name }}</td>
+
+              {% if one_lend_stream.lend_stream_type == 1 %}
+              <td>Borrow</td>
+              <td><button type="button" class="btn btn-success" onclick="javascript:window.location.href='{% url 'reader_confirm_return' one_lend_stream.lend_stream_book_name %}';" >Return</button></td>
+              {% endif %}
+              {% if one_lend_stream.lend_stream_type == 2 %}
+              <td>Return</td>
+              <td></td>
+              {% endif %}
+
+            </tr>
+          {% endfor %}
+        {% endif %}
+
+      </tbody>
+
+    </table>
+
+    <hr class="mb-4">
+      <br>
+      <br>
+      <br>
+  </div>
+
+{% endblock %}
+
+{% block len_information %}
+    <a class="dropdown-item" href="{% url 'reader_self_lend_stream' reader_user %}">查看自己的借阅信息</a>
+{% endblock %}

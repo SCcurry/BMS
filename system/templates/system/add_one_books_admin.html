@@ -1,0 +1,82 @@
+{% extends "system/system_admin_base.html" %}
+{% load static %}
+{% load bootstrap3 %}
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/static/ico/book-admin.png">
+
+    <title>Starter Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/static/css/start-template/start-template.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    {% block starter-template %}
+    <!-- 删掉base模板所带的标题 -->
+    {% endblock %}
+
+    {% block main %}
+
+            <div class="col-md-12">
+                <h4 class="mb-3"><strong>创建一个图书管理员用户</strong></h4>
+                <form method="post" class="needs-validation" novalidate="">
+                    {% csrf_token %}
+                <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <label for="books_admin_user">账号</label>
+                        <input type="text" class="form-control" name="books_admin_user" id="books_admin_user" placeholder="请输入账号" value="" required="">
+                    </div>
+                    <!-- 验证输入框有无值 -->
+                    <div class="invalid-feedback">
+                        请输入账号
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="books_admin_pwd">密码</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="books_admin_pwd" id="books_admin_pwd" placeholder="请输入密码" value="" required="">
+                        <div class="invalid-feedback" style="width: 100%;">
+                            请输入密码
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="books_admin_name">管理员姓名<span class="text-muted"></span></label>
+                    <input type="text" class="form-control" name="books_admin_name" id="books_admin_name" placeholder="请输入管理员姓名" value="" required="">
+                    <div class="invalid-feedback">
+                        请输入管理员姓名
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="books_admin_phone">联系方式</label>
+                    <input type="text" class="form-control" name="books_admin_phone" id="books_admin_phone" placeholder="请输入联系方式" value="" required="">
+                    <div class="invalid-feedback">
+                        请输入联系方式
+                    </div>
+                </div>
+
+
+                <hr class="mb-4">
+                <button class="btn btn-primary btn-lg btn-block" type="submit" >Confirm</button>
+                    <br>
+                </form>
+            </div>
+
+    {% endblock %}
+
+
+  </body>
+</html>

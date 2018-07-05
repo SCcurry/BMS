@@ -1,0 +1,19 @@
+{% extends "system/reader_base.html" %}
+{% load static %}
+{% load bootstrap3 %}
+
+
+{% block starter-template %}
+    <div class="starter-template">
+      {% block main_text %}
+
+        <h2>你确定要借阅  {{ book_name }}  这本书吗？</h2>
+        <p class="lead"></p>
+      {% endblock %}
+    </div>
+{% endblock %}
+
+{% block row %}
+    <button class="btn btn-primary btn-lg btn-block" type="button" onclick="javascript:window.location.href='{% url 'reader_borrow_succeed' book_name %}';">Confirm</button>
+{% endblock %}
+

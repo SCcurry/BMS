@@ -1,0 +1,61 @@
+{% extends "system/books_admin_base.html" %}
+{% load static %}
+{% load bootstrap3 %}
+
+
+<html>
+    <body>
+            {% block title %}
+            <title>
+              Lend_list
+            </title>
+            {% endblock %}
+
+            {% block main_text %}
+            <h1>你可以在这里查看所有归还的记录</h1>
+            {% endblock %}
+
+            {% block main %}
+                <div class="container">
+
+                    <table class="table table-hover">
+                        <small>借阅信息 </small>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>读者账号</th>
+                                <th>书名</th>
+                                <th>类型</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {% if All_return_stream %}
+                            {% for one_lend_stream in All_return_stream %}
+                            <tr>
+                                <td>{{ one_lend_stream.lend_stream_id }}</td>
+                                <td>{{ one_lend_stream.lend_stream_reader_name }}</td>
+                                <td>{{ one_lend_stream.lend_stream_book_name }}</td>
+
+                            {% if one_lend_stream.lend_stream_type == 2 %}
+                                <td>Return</td>
+                            {% endif %}
+
+
+                            </tr>
+                            {% endfor %}
+                            {% endif %}
+
+                        </tbody>
+
+                    </table>
+
+                    <hr class="mb-4">
+                    <br>
+                    <br>
+                    <br>
+                </div>
+
+            {% endblock %}
+    </body>
+</html>

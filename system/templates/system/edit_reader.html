@@ -1,0 +1,90 @@
+﻿{% extends "system/system_admin_base.html" %}
+{% load static %}
+{% load bootstrap3 %}
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/static/ico/book-admin.png">
+
+    <title>Starter Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/static/css/start-template/start-template.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    {% block starter-template %}
+    <!-- 删掉base模板所带的标题 -->
+    {% endblock %}
+
+    {% block main %}
+        {% if reader %}
+            <div class="col-md-12">
+                <h4 class="mb-3">读者信息</h4>
+                <form method="post" class="needs-validation" novalidate="">
+                    {% csrf_token %}
+                <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <label for="reader_user">账号</label>
+                        <input type="text" class="form-control" name="reader_user" id="reader_user" placeholder="{{ reader.Person_User }}" value="{{ reader.Person_User }}" required="">
+                    </div>
+                    <!-- 验证输入框有无值 -->
+                    <div class="invalid-feedback">
+                        请输入账号
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="reader_pwd">密码</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="reader_pwd" id="reader_pwd" placeholder="{{ reader.Person_Password }}" value="{{ reader.Person_Password }}" required="">
+                        <div class="invalid-feedback" style="width: 100%;">
+                            请输入密码
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="reader_name">姓名<span class="text-muted"></span></label>
+                    <input type="text" class="form-control" name="reader_name" id="reader_name" placeholder="{{ reader.Person_Name }}" value="{{ reader.Person_Name }}" required="">
+                    <div class="invalid-feedback">
+                        请输入读者姓名
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="reader_phone">联系方式</label>
+                    <input type="text" class="form-control" name="reader_phone" id="reader_phone" placeholder="{{ reader.Person_Phone }}" value="{{ reader.Person_Phone }}" required="">
+                    <div class="invalid-feedback">
+                        请输入联系方式
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="reader_canborrow">可借余量</label>
+                    <input type="text" class="form-control" name="reader_canborrow" id="reader_canborrow" placeholder="{{ reader.Person_Phone }}" value="{{ reader.Person_Phone }}" required="">
+                    <div class="invalid-feedback">
+                        请输入可借余量
+                    </div>
+                </div>
+
+
+                <hr class="mb-4">
+                <button class="btn btn-primary btn-lg btn-block" type="submit">Confirm</button>
+                    <br>
+                </form>
+            </div>
+        {% endif %}
+    {% endblock %}
+
+
+  </body>
+</html>

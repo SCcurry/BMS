@@ -1,0 +1,46 @@
+{% extends "system/books_admin_base.html" %}
+{% load static %}
+{% load bootstrap3 %}
+
+{% block starter-template %}
+
+{% endblock %}
+
+{% block card %}
+    {% if book_info %}
+
+        <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+            <h1 class="display-4">{{ book_info.book_name }}</h1>
+            <p class="lead"><strong>简介：</strong>  <small>{{ book_info.book_introduction }}</small></p>
+        </div>
+
+        <div class="card-deck mb-3 text-center">
+
+            <div class="card mb-4 box-shadow">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">信息</h4>
+                </div>
+                <div class="card-body">
+
+                    <ul class="list-unstyled mt-3 mb-4">
+                        <li><strong>作者：</strong>{{ book_info.book_author }}</li>
+                        <li><strong>出版社：</strong>{{ book_info.book_publish }}</li>
+                        <li><strong>出版时间：</strong>{{ book_info.book_publish_date }}</li>
+                        <li><strong>语种：</strong>{{ book_info.book_language }}</li>
+                        <li><strong>价格：</strong>{{ book_info.book_price }}</li>
+                        <li><strong>ISBN：</strong>{{ book_info.book_ISBN }}</li>
+
+                        {% if book_info.book_status == 0 %}
+                        <li><strong>状态：</strong>未借出</li>
+                        {% endif %}
+                        {% if book_info.book_status == 1 %}
+                        <li><strong>状态：</strong>已借出</li>
+                        {% endif %}
+                        <li><strong>借出次数：</strong>{{ book_info.book_lend_count }}</li>
+                    </ul>
+                </div>
+            </div>
+
+      </div>
+    {% endif %}
+{% endblock %}

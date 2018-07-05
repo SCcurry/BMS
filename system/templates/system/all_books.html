@@ -1,0 +1,84 @@
+{% extends "system/books_admin_base.html" %}
+{% load static %}
+{% load bootstrap3 %}
+
+
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/static/ico/book-admin.png">
+
+
+    <!-- Bootstrap core CSS -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/static/css/start-template/start-template.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    {% block title %}
+    <title>
+      All_books
+    </title>
+    {% endblock %}
+    
+    {% block main_text %}
+    <h1>这里有全部图书的信息~</h1>
+    <p class="lead">你可以在这里查看全部图书的信息<br> 并且对它们进行修改或删除</p>
+    {% endblock %}
+
+    {% block row %}
+        <div class="row">
+            {% for obj in obj_list %}
+
+            <div class="col-md-4">
+                <div class="card mb-4 box-shadow">
+                    <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;" src="/static/img/front_cover3.png" data-holder-rendered="true">
+                    <div class="card-body">
+                        <div class="text-center">
+                        <h5><strong>{{ obj.book_name }}</strong></h5>
+                        <!-- 使用过滤器对模板变量进行切片操作 -->
+                        <p>{{ obj.book_introduction | slice:":55" | add:"......" }}</p>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-sm btn-outline-secondary" onclick="javascript:window.location.href='{% url 'book_detail' obj.book_name %}';" >View</button>
+                                <button type="button" class="btn btn-sm btn-outline-secondary" onclick="javascript:window.location.href='{% url 'edit_book' obj.book_name %}';">Edit</button>
+                                <button type="button" class="btn btn-sm btn-danger btn-block" onclick="javascript:window.location.href='{% url 'books_admin_delete_book' obj.book_name %}';">Delete</button>
+                            </div>
+                            <a href="{% url 'book_detail' obj.book_name  %}"><small class="text-muted"> >> More </small></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+            <!-- 渲染完毕之后，新增一张“添加”卡片-->
+            <div class="col-md-4">
+                <div class="card mb-4 box-shadow">
+                    <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;" src="/static/ico/New_canvas3.png" data-holder-rendered="true">
+                    <div class="card-body">
+                        <div class="text-center">
+
+                        <!-- 使用过滤器对模板变量进行切片操作 -->
+
+                        </div>
+                        <button class="btn btn-success btn-block" type="button"  onclick="javascript:window.location.href='{% url 'add_one_book' %}';" >Add</button>
+
+                    </div>
+                </div>
+            </div>
+
+            <hr class="mb-4">
+        </div>
+    {% endblock %}
+
+  </body>
+</html>

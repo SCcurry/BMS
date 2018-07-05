@@ -1,0 +1,16 @@
+{% extends "system/books_admin_base.html" %}
+{% load static %}
+{% load bootstrap3 %}
+
+
+<html>
+    <body>
+    {% block main_text %}
+    <h2>您已成功修改个人信息！</h2>
+        <br>
+        <br>
+    <button type="button" class="btn" ><a style="color:black;" href="/books-admin/" >返回首页</a></button>
+    <button type="button" class="btn"><a href="{% url 'books_admin_change_pwd' %}" style="color:black;">返回上一页</a></button>
+{% endblock %}
+    </body>
+</html>

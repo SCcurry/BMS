@@ -1,0 +1,16 @@
+{% extends "system/reader_base.html" %}
+{% load static %}
+{% load bootstrap3 %}
+
+
+<html>
+    <body>
+    {% block main_text %}
+    <h2>您已成功借阅  {{ book_name }}  ！</h2>
+        <br>
+        <br>
+    <button type="button" class="btn" ><a style="color:black;" href="/reader/" >返回首页</a></button>
+    <button type="button" class="btn"><a href="{% url 'reader_self_lend_stream' reader_user %}" style="color:black;">查看借阅信息</a></button>
+{% endblock %}
+    </body>
+</html>

@@ -1,0 +1,63 @@
+﻿{% extends "system/system_admin_base.html" %}
+{% load static %}
+{% load bootstrap3 %}
+
+{% block starter-template %}
+    <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+        <h1 class="display-4">修改读者信息</h1>
+        <p class="lead">  <small>所有读者的信息以表格的形式显示在下面</small></p>
+    </div>
+{% endblock %}
+
+{% block main %}
+  <div class="container">
+
+    <table class="table table-hover">
+      <small>读者信息 </small>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>账号</th>
+          <th>密码</th>
+          <th>姓名</th>
+            <th>联系方式</th>
+            <th>可借余量</th>
+            <th></th>>
+        </tr>
+      </thead>
+
+      <tbody>
+        {% if All_reader %}
+          {% for one_reader in All_reader %}
+            <tr>
+              <td>{{ one_reader.Person_Id }}</td>
+              <td>{{ one_reader.Person_User }}</td>
+              <td>{{ one_reader.Person_Password }}</td>
+              <td>{{ one_reader.Person_Name }}</td>
+              <td>{{ one_reader.Person_Phone }}</td>
+                <td>{{ one_reader.Person_CanBorrow }}</td>
+              <td><button type="button" class="btn" onclick="javascript:window.location.href='{% url 'edit_reader' one_reader.Person_User %}';">修改</button></td>
+            </tr>
+          {% endfor %}
+        {% endif %}
+        <!-- 增加一行以作添加用 -->
+        <tr>
+            <td>---</td>
+            <td>---</td>
+            <td>---</td>
+            <td>---</td>
+            <td>---</td>
+            <td>---</td>
+            <td><button type="button" class="btn" onclick="javascript:window.location.href='{% url 'add_one_reader' %}';">添加</button></td>
+        </tr>
+      </tbody>
+
+    </table>
+
+    <hr class="mb-4">
+      <br>
+      <br>
+      <br>
+  </div>
+
+{% endblock %}

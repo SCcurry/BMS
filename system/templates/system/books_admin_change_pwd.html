@@ -1,0 +1,78 @@
+{% extends "system/books_admin_base.html" %}
+{% load static %}
+{% load bootstrap3 %}
+
+
+<html>
+    <body>
+            {% block title %}
+            <title>
+              Borrow_list
+            </title>
+            {% endblock %}
+        
+            {% block main_text %}
+            <h1>你可以在这里修改你的密码与信息</h1>
+            <p>这是个人信息界面</p>
+            {% endblock %}
+
+
+        {% if user_type == 2 %}
+            {% block main %}
+            {% if user_data %}
+            <div class="col-md-12">
+                <h4 class="mb-3">图书管理员信息</h4>
+                <form method="post" class="needs-validation" novalidate="">
+                    {% csrf_token %}
+                <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <label for="books_admin_user">账号</label>
+                        <input type="text" class="form-control" name="books_admin_user" id="book_name" placeholder="{{ user_data.BookSys_User }}" value="{{ user_data.BookSys_User }}" required="">
+                    </div>
+                    <!-- 验证输入框有无值 -->
+                    <div class="invalid-feedback">
+                        请输入账号
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="books_admin_pwd">密码</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="books_admin_pwd" id="book_author" placeholder="{{ user_data.BookSys_Password }}" value="{{ user_data.BookSys_Password }}" required="">
+                        <div class="invalid-feedback" style="width: 100%;">
+                            请输入密码
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="books_admin_name">管理员姓名<span class="text-muted"></span></label>
+                    <input type="text" class="form-control" name="books_admin_name" id="book_publish" placeholder="{{ user_data.BookSys_Name }}" value="{{ user_data.BookSys_Name }}" required="">
+                    <div class="invalid-feedback">
+                        请输入管理员姓名
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="books_admin_phone">联系方式</label>
+                    <input type="text" class="form-control" name="books_admin_phone" id="book_language" placeholder="{{ user_data.BookSys_Phone }}" value="{{ user_data.BookSys_Phone }}" required="">
+                    <div class="invalid-feedback">
+                        请输入联系方式
+                    </div>
+                </div>
+
+
+                <hr class="mb-4">
+                <button class="btn btn-primary btn-lg btn-block" type="submit">Confirm</button>
+                    <br>
+                </form>
+            </div>
+            {% endif %}
+        {% endblock %}
+        {% endif %}
+
+
+
+
+    </body>
+</html>
